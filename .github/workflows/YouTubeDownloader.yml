@@ -245,7 +245,7 @@ jobs:
           video_id = video_id_match.group(1) if video_id_match else "unknown"
           
           # Clean up the title
-          safe_title = re.sub(r'[^a-zA-Z0-9\-_]', '_', title.replace(' ', '_'))
+          safe_title = re.sub(r'[^a-zA-Z0-9\-_]', '_')
           # Limit filename length
           safe_title = safe_title[:60] if len(safe_title) > 60 else safe_title
           safe_title = safe_title.strip('_') or video_id
@@ -258,7 +258,7 @@ jobs:
               extension = "mp4"
               quality_label = QUALITY  # e.g. 720p
           
-          filename = f"{safe_title}_{video_id}_{quality_label}.{extension}"
+          filename = f"{author_name} - {safe_title}.{extension}"
           
           # ========== SAVE METADATA ==========
           with open('/tmp/metadata.txt', 'w', encoding='utf-8') as f:
